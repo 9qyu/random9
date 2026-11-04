@@ -32,7 +32,7 @@
     <nav class="actions">
       <button id="how" type="button" class="ghost" data-i18n="how"></button>
       <!-- 公開時にリポジトリのURLへ書き換える -->
-      <a id="repo" class="ghost" href="https://github.com/YOUR-ACCOUNT/random9" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
+      <a id="repo" class="ghost" href="https://github.com/9qyu/random9" target="_blank" rel="noopener noreferrer">GitHub<span aria-hidden="true"> ↗</span></a>
     </nav>
   </header>
 
@@ -44,6 +44,7 @@
           <button type="button" role="tab" id="tab-pw" aria-controls="panel-pw" aria-selected="false" tabindex="-1" data-i18n="tabPw"></button>
         </div>
         <form id="form" novalidate autocomplete="off">
+          <div class="panes">
           <div id="panel-int" role="tabpanel" aria-labelledby="tab-int">
             <div class="row2 range">
               <div class="field">
@@ -85,17 +86,20 @@
             </div>
             <p class="note" data-i18n="digitsNote"></p>
           </div>
+          </div>
 
           <p id="error" class="error" role="alert"></p>
           <button id="generate" type="submit" class="primary" data-i18n="generate"></button>
         </form>
       </section>
 
-      <section class="card result" aria-labelledby="result-title">
+      <section id="result" class="card result" data-state="empty" aria-labelledby="result-title">
         <h2 id="result-title" class="result-title" data-i18n="resultTitle"></h2>
         <div class="result-body">
-          <output id="out" class="out" aria-live="polite"></output>
+          <p id="placeholder" class="placeholder" data-i18n="placeholder"></p>
+        <output id="out" class="out" aria-live="polite"></output>
         </div>
+        <div id="gauge" class="gauge" role="meter" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0"><span></span><span></span><span></span><span></span></div>
         <p id="detail" class="detail"></p>
         <div class="result-actions">
           <button id="copy" type="button" class="secondary" disabled>
@@ -127,7 +131,9 @@
 <dialog id="about" aria-labelledby="about-title">
   <div class="dlg-head">
     <h2 id="about-title"></h2>
-    <button id="about-close" type="button" class="secondary" data-i18n="close"></button>
+    <button id="about-close" type="button" class="icon-btn" data-i18n-label="close">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
   </div>
   <div class="dlg-body" id="about-body"></div>
 </dialog>

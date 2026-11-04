@@ -16,7 +16,7 @@ const els = {
   about: $('about'),
 };
 
-const state = { mode: 'int', text: '', count: 0, detail: null };
+const state = { mode: 'int', text: '', count: 0, detail: null, level: 0 };
 let toastTimer = 0;
 
 /* ---------- 表示まわり ---------- */
@@ -48,6 +48,7 @@ function applyI18n() {
   updateGenLabel();
   if (state.count) {
     els.detail.textContent = state.detail ? state.detail() : '';
+    updateGauge();
   } else {
     showPlaceholder();
   }
@@ -62,26 +63,42 @@ function updateCopyLabel() {
   $('copy-label').textContent = state.count > 1 ? t('copyAll') : t('copy');
 }
 
+function updateGauge() {
+  const g = $('gauge');
+  g.classList.toggle('on', state.level > 0);
+  g.setAttribute('aria-valuenow', String(state.level));
+  g.setAttribute('aria-valuetext', state.detail ? state.detail() : '');
+  [...g.children].forEach((seg, i) => {
+    seg.className = i < state.level ? 'fill l' + state.level : '';
+  });
+}
+
 function showPlaceholder() {
+  state.level = 0;
   state.text = '';
   state.count = 0;
   state.detail = null;
-  els.out.textContent = t('placeholder');
-  els.out.className = 'out empty';
+  $('result').dataset.state = 'empty';
+  els.out.textContent = '';
+  els.out.className = 'out';
   els.detail.textContent = '';
   els.copy.disabled = true;
   updateCopyLabel();
+  updateGauge();
 }
 
-function showResult(text, count, detail) {
+function showResult(text, count, detail, level = 0) {
+  state.level = level;
   state.text = text;
   state.count = count;
   state.detail = detail;
   els.out.textContent = text;
   els.out.className = (count > 1 ? 'out multi' : 'out') + (state.mode === 'pw' ? ' mono' : '');
+  $('result').dataset.state = 'ready';
   els.detail.textContent = detail();
   els.copy.disabled = false;
   updateCopyLabel();
+  updateGauge();
 }
 
 function showError(msg) {
@@ -97,9 +114,11 @@ function toast(msg) {
 
 /* ---------- 生成 ---------- */
 
+function strengthLevel(bits) {
+  return bits >= 100 ? 4 : bits >= 70 ? 3 : bits >= 50 ? 2 : 1;
+}
 function strengthLabel(bits) {
-  const labels = t('strength');
-  return bits >= 100 ? labels[3] : bits >= 70 ? labels[2] : bits >= 50 ? labels[1] : labels[0];
+  return t('strength')[strengthLevel(bits) - 1];
 }
 
 function generate() {
@@ -119,7 +138,7 @@ function generate() {
         symbols: $('pw-symbols').checked,
       });
       const b = Math.floor(bits);
-      showResult(password, 1, () => t('detailPw', b, strengthLabel(b)));
+      showResult(password, 1, () => t('detailPw', b, strengthLabel(b)), strengthLevel(b));
     }
   } catch (e) {
     if (e instanceof ModeError) {

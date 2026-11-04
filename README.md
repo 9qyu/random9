@@ -40,7 +40,7 @@ npm test           # 単体テスト（Node.js 20 以上）
 3. ビルドコマンドは空、出力ディレクトリは `/`（リポジトリ直下）にする。
 4. `_headers` が自動で読み込まれ、CSP などが HTTP ヘッダーとして付きます。
 
-公開前に `index.html` の `https://github.com/YOUR-ACCOUNT/random9`（2 か所）を実際のリポジトリ URL に書き換えてください。
+リポジトリのURLは `index.html` の GitHub リンク（`https://github.com/9qyu/random9`）です。
 
 ファイルを変更したら `sw.js` の `VERSION` を上げてください（古いキャッシュが入れ替わります）。
 
