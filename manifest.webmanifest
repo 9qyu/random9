@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "random9",
+  "short_name": "random9",
+  "description": "サーバーに何も送らず、ブラウザの中だけで安全な乱数を作ります。 / Secure random numbers made entirely in your browser.",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c0c0e",
+  "theme_color": "#0c0c0e",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
