@@ -128,9 +128,7 @@ function generate() {
       const min = $('int-min').value;
       const max = $('int-max').value;
       const values = generateIntegers({ min, max, count: $('int-count').value, unique: $('int-unique').checked });
-      const lo = values.length ? String(BigInt(min.trim())) : '';
-      const hi = String(BigInt(max.trim()));
-      showResult(values.join(', '), values.length, () => t('detailInt', values.length, lo, hi));
+      showResult(values.join(', '), values.length, () => '');
     } else {
       const { password, bits } = generatePassword({
         length: $('pw-length').value,
