@@ -3,7 +3,7 @@
 (() => {
 const dict = {
   ja: {
-    title: 'random9 — サーバー通信をしない乱数・パスワードジェネレーター',
+    title: 'サーバー通信をしない乱数・パスワードジェネレーター',
     description: 'サーバーに何も送らず、ブラウザの中だけで安全な乱数を作ります。',
     tabInt: '整数',
     tabPw: 'パスワード',
@@ -54,7 +54,7 @@ const dict = {
 
   },
   en: {
-    title: 'random9 — Random number & password generator, no server communication',
+    title: 'Random number & password generator, no server communication',
     description: 'Generates secure random values inside your browser. Nothing is sent to any server.',
     tabInt: 'Integer',
     tabPw: 'Password',
