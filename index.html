@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="random9">
-<meta name="description" content="無料・広告無し・登録無しで使える乱数ジェネレータ。ブラウザ内で乱数を生成するため、入力値や生成結果はサーバーに送信されません。">
+<meta name="description" content="サーバーに何も送らず、ブラウザの中だけで安全な乱数を作ります。">
 <title>サーバー通信をしない乱数・パスワードジェネレーター</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
@@ -21,13 +21,12 @@
 <script defer src="js/modes.js"></script>
 <script defer src="js/i18n.js"></script>
 <script defer src="js/app.js"></script>
-  <meta name="google-site-verification" content="r1A06UlWpsyW6-o8EfzNHuJiQIc2G2jOK60fZNIqYMU" />
 </head>
 <body>
 <div class="app">
   <header class="top">
     <div class="brand">
-      <img src="icons/icon-192.png" alt="" width="28" height="28">
+      <img src="icons/logo.png" alt="" width="28" height="28">
       <h1 class="brand-name">random9</h1>
     </div>
     <nav class="actions">
@@ -76,6 +75,10 @@
               <input id="pw-length" type="range" min="8" max="128" step="1" value="20">
             </div>
             <div class="checks">
+              <label class="check" for="pw-digits">
+                <input id="pw-digits" type="checkbox" checked>
+                <span data-i18n="digits"></span>
+              </label>
               <label class="check" for="pw-alpha">
                 <input id="pw-alpha" type="checkbox" checked>
                 <span data-i18n="alpha"></span>
@@ -85,7 +88,6 @@
                 <span data-i18n="symbols"></span>
               </label>
             </div>
-            <p class="note" data-i18n="digitsNote"></p>
           </div>
           </div>
 

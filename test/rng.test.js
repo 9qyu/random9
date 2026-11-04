@@ -129,26 +129,35 @@ test('整数: 幅が2の冪でない範囲を一様に引く（カイ二乗）',
 
 test('パスワード: 文字種のON/OFFと長さ', () => {
   for (let i = 0; i < 300; i++) {
-    const all = generatePassword({ length: 20, alpha: true, symbols: true }).password;
+    const all = generatePassword({ length: 20, digits: true, alpha: true, symbols: true }).password;
     assert.equal(all.length, 20);
     assert.match(all, /[A-Z]/);
     assert.match(all, /[a-z]/);
     assert.match(all, /[0-9]/);
     assert.match(all, /[^A-Za-z0-9]/);
 
-    const noSym = generatePassword({ length: 8, alpha: true, symbols: false }).password;
+    const noSym = generatePassword({ length: 8, digits: true, alpha: true, symbols: false }).password;
     assert.match(noSym, /^[A-Za-z0-9]{8}$/);
     assert.match(noSym, /[0-9]/);
 
-    const noAlpha = generatePassword({ length: 12, alpha: false, symbols: true }).password;
+    const noAlpha = generatePassword({ length: 12, digits: true, alpha: false, symbols: true }).password;
     assert.doesNotMatch(noAlpha, /[A-Za-z]/);
     assert.match(noAlpha, /[0-9]/);
     assert.match(noAlpha, /[^0-9]/);
 
-    assert.match(generatePassword({ length: 128, alpha: false, symbols: false }).password, /^[0-9]{128}$/);
+    assert.match(generatePassword({ length: 128, digits: true, alpha: false, symbols: false }).password, /^[0-9]{128}$/);
+
+    const noDigit = generatePassword({ length: 16, digits: false, alpha: true, symbols: true }).password;
+    assert.doesNotMatch(noDigit, /[0-9]/);
+    assert.match(noDigit, /[A-Z]/);
+    assert.match(noDigit, /[a-z]/);
+    assert.match(noDigit, /[^A-Za-z0-9]/);
+    assert.match(generatePassword({ length: 16, digits: false, alpha: true, symbols: false }).password, /^[A-Za-z]{16}$/);
+    assert.match(generatePassword({ length: 16, digits: false, alpha: false, symbols: true }).password, /^[^A-Za-z0-9]{16}$/);
   }
-  assert.throws(() => generatePassword({ length: 7, alpha: true, symbols: true }), ModeError);
-  assert.throws(() => generatePassword({ length: 129, alpha: true, symbols: true }), ModeError);
+  assert.throws(() => generatePassword({ length: 7, digits: true, alpha: true, symbols: true }), ModeError);
+  assert.throws(() => generatePassword({ length: 16, digits: false, alpha: false, symbols: false }), ModeError);
+  assert.throws(() => generatePassword({ length: 129, digits: true, alpha: true, symbols: true }), ModeError);
 });
 
 test('コード規約: 禁止APIを使っていない（通信ゼロ・暗号用乱数のみ）', () => {

@@ -70,13 +70,15 @@ function generateIntegers({ min, max, count, unique }) {
   return out;
 }
 
-/** パスワードを1つ作る。数字は常に含め、有効な文字種は各1文字以上含める。 */
-function generatePassword({ length, alpha, symbols }) {
+/** パスワードを1つ作る。選んだ文字種（数字・英字・記号）は各1文字以上含める。 */
+function generatePassword({ length, digits, alpha, symbols }) {
   const len = Number(length);
   if (!Number.isInteger(len) || len < LIMITS.pwMin || len > LIMITS.pwMax) throw new ModeError('pw_length');
-  const sets = [DIGITS];
+  const sets = [];
+  if (digits) sets.push(DIGITS);
   if (alpha) sets.push(UPPER, LOWER);
   if (symbols) sets.push(SYMBOLS);
+  if (!sets.length) throw new ModeError('pw_charset');
   const pool = sets.join('');
 
   const chars = sets.map((s) => s[randomInt(s.length)]);

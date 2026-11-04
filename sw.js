@@ -1,6 +1,6 @@
 // Service Worker: 同一サイトの静的ファイルを事前キャッシュし、オフラインでも動かす。
 // ファイルを変更したら VERSION を上げる（古いキャッシュは activate で削除される）。
-const VERSION = 'v14';
+const VERSION = 'v15';
 const CACHE = `random9-${VERSION}`;
 const FILES = [
   './',
@@ -15,6 +15,7 @@ const FILES = [
   'icons/icon-512.png',
   'icons/maskable-512.png',
   'icons/apple-touch-icon.png',
+  'icons/logo.png',
 ];
 
 self.addEventListener('install', (event) => {

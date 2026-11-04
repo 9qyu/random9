@@ -134,6 +134,7 @@ function generate() {
     } else {
       const { password, bits } = generatePassword({
         length: $('pw-length').value,
+        digits: $('pw-digits').checked,
         alpha: $('pw-alpha').checked,
         symbols: $('pw-symbols').checked,
       });
@@ -255,6 +256,7 @@ function init() {
     if (state.mode === 'pw' && isSupported()) generate();
   };
   $('pw-length').addEventListener('input', regen);
+  $('pw-digits').addEventListener('change', regen);
   $('pw-alpha').addEventListener('change', regen);
   $('pw-symbols').addEventListener('change', regen);
 
