@@ -1,6 +1,6 @@
 // Service Worker: 同一サイトの静的ファイルを事前キャッシュし、オフラインでも動かす。
 // ファイルを変更したら VERSION を上げる（古いキャッシュは activate で削除される）。
-const VERSION = 'v12';
+const VERSION = 'v13';
 const CACHE = `random9-${VERSION}`;
 const FILES = [
   './',
