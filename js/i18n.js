@@ -4,7 +4,7 @@
 const dict = {
   ja: {
     title: 'サーバー通信をしない乱数・パスワードジェネレーター',
-    description: 'サーバーに何も送らず、ブラウザの中だけで安全な乱数を作ります。',
+    description: '無料・広告無し・登録無しで使える乱数ジェネレータ。ブラウザ内で乱数を生成するため、入力値や生成結果はサーバーに送信されません。',
     tabInt: '整数',
     tabPw: 'パスワード',
     min: '最小値',
@@ -54,8 +54,8 @@ const dict = {
 
   },
   en: {
-    title: 'Random number & password generator, no server communication',
-    description: 'Generates secure random values inside your browser. Nothing is sent to any server.',
+    title: 'Random Number & Password Generator with No Server Communication',
+    description: 'A free random number generator with no ads or sign-up required. All random numbers are generated directly in your browser, so your inputs and results are never sent to our servers.',
     tabInt: 'Integer',
     tabPw: 'Password',
     min: 'Minimum',
